@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      {{ address.city }}
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showAddressModal()">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <ion-item menuClose detail-none>Close Menu</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent>test</ion-nav>
+
+<ion-content padding class="main">
+  <ion-grid *ngIf="weather && forecastToday">
+
+    <div class="weather-box">
+
+      <ion-row>
+        <ion-col>
+          <line-chart></line-chart>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <!-- <div text-right><ion-icon name="information-circle"></ion-icon></div> -->
+          <h3 class="desc">{{ weather.wx_desc }}</h3>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col width-30>
+          <div class="icon"><img src="/assets/icon/{{weather.wx_icon}}"></div>
+        </ion-col>
+
+        <ion-col width-70>
+          <ion-row>
+            <ion-col width-70>
+              <h1 class="temp margin0">{{ weather.temp_c }}&deg;</h1>
+            </ion-col>
+            <ion-col width-30>
+              <p class="forecastMax">
+                <i class="wi wi-direction-up"></i>
+                {{ forecastToday.temp_max_c }}&deg;
+              </p>
+              <p class="forecastMin">
+                <i class="wi wi-direction-down"></i>
+                {{ forecastToday.temp_min_c }}&deg;
+              </p>
+            </ion-col>
+          </ion-row>
+          <p class="weather-feels"><strong>Feels like:</strong> {{ weather.feelslike_c }}&deg;C</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row text-center>
+        <ion-col>
+          <div><i class="wi wi-umbrella today-details"></i><br />{{ forecastToday.precip_total_mm }}%</div>
+        </ion-col>
+        <ion-col>
+          <div><i class="wi wi-humidity today-details"></i><br />{{ forecastToday.precip_total_mm }}%</div>
+        </ion-col>
+        <ion-col>
+          <div><ion-icon name="eye" class="today-details"></ion-icon><br />{{ weather.vis_km }} km</div>
+        </ion-col>
+        <ion-col>
+          <div><i class="wi wi-wind from-{{ weather.winddir_deg }}-deg today-details"></i> {{ weather.winddir_compass }}<br />{{ weather.windspd_kmh  }} kmh</div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <h6 class="date">
+            <span>{{ currentDate.day }}</span>
+            {{ currentDate.date }}
+          </h6>
+        </ion-col>
+
+        <ion-col class="timeWrapper">
+          <h6 class="time">
+            {{ currentTime }}
+          </h6>
+        </ion-col>
+      </ion-row>
+
+    </div>
+
+    <ion-row class="current-details">
+      <ion-col>
+        <ion-row class="weather-box" (click)="showCurrentDetails()">
+          <ion-col>Hourly Details</ion-col>
+          <ion-col text-right><ion-icon name="information-circle"></ion-icon></ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="forecast">
+      <ion-col width-33  *ngFor="let day of forecastWeek">
+        <div class="weather-box">
+          <ion-row>
+            <ion-col width-50>
+              <div class="icon" *ngIf="day.Timeframes[4]"><img src="/assets/icon/{{day.Timeframes[4].wx_icon}}"></div>
+            </ion-col>
+
+            <ion-col width-50>
+              <p class="forecastMax"><i class="wi wi-direction-up"></i> {{day.temp_max_c}}&deg;</p>
+              <p class="forecastMin"><i class="wi wi-direction-down"></i> {{day.temp_min_c}}&deg;</p>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col width-100>
+              <div>{{ day.date }}</div>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+<!--     <ion-row>
+      <ion-col width-100>
+        <ion-list>
+          <ion-item>
+            <strong>Temp: </strong> {{ weather.temp_c }}&deg;C ({{ weather.temp_f }}&deg;F)
+          </ion-item>
+          <ion-item>
+            <strong>Relative Humidity: </strong> {{ weather.humid_pct }}%
+          </ion-item>
+          <ion-item>
+            <strong>Dewpoint: </strong>  {{weather.dewpoint_c}}&deg;C ({{ weather.dewpoint_f }}&deg;F)
+          </ion-item>
+          <ion-item>
+            <strong>Visibility: </strong> {{ weather.vis_km }} km
+          </ion-item>
+          <ion-item>
+            <strong>Wind: </strong> {{ weather.windspd_kmh }} km/h
+          </ion-item>
+          <ion-item>
+            <strong>Wind Direction: </strong> {{ weather.winddir_compass }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row> -->
+
+    <ion-row>
+      <ion-col width-100>
+        <p><i class="wi wi-refresh"></i> Last updated on {{ updatedDate }}</p>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

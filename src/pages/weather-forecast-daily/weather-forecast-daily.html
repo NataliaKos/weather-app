@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <!--{{ address.city }}-->
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <ion-item menuClose detail-none>Close Menu</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent>test</ion-nav>
+
+<ion-content padding class="main">
+  <ion-grid>
+
+    <div class="weather-box">
+      <ion-row>
+        <ion-col>
+          <line-chart [lineChartData] = "lineChartData"
+                      [lineChartLabels] = "lineChartLabels">
+          </line-chart>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="weather-box" *ngFor="let day of daily">
+      <ion-row>
+        <ion-col>
+          <div>{{ day.summary }}</div>
+          <div class="icon">
+            <i class="wi wi-{{ day.icon }}"></i>
+          </div>
+cloudCover
+humidity
+moonPhase
+ozone
+precipIntensity
+precipIntensityMax
+precipProbability
+pressure
+sunriseTime
+sunsetTime
+temperatureMax
+temperatureMin
+visibility
+windBearing
+windSpeed
+        </ion-col>
+      </ion-row>
+    </div>
+
+  </ion-grid>
+</ion-content>

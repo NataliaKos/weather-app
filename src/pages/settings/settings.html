@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="main">
+    <ion-list>
+      <ion-item>
+        <ion-label>Language</ion-label>
+        <ion-select [(ngModel)]="userLanguage">
+          <ion-option value="ar">Arabic</ion-option>
+          <ion-option value="az">Azerbaijani</ion-option>
+          <ion-option value="be">Belarusian</ion-option>
+          <ion-option value="bg">Bulgarian</ion-option>
+          <ion-option value="bs">Bosnian</ion-option>
+          <ion-option value="ca">Catalan</ion-option>
+          <ion-option value="cs">Czech</ion-option>
+          <ion-option value="de">German</ion-option>
+          <ion-option value="el">Greek</ion-option>
+          <ion-option value="en">English (default)</ion-option>
+          <ion-option value="es">Spanish</ion-option>
+          <ion-option value="et">Estonian</ion-option>
+          <ion-option value="fr">French</ion-option>
+          <ion-option value="hr">Croatian</ion-option>
+          <ion-option value="hu">Hungarian</ion-option>
+          <ion-option value="id">Indonesian</ion-option>
+          <ion-option value="it">Italian</ion-option>
+          <ion-option value="is">Icelandic</ion-option>
+          <ion-option value="kw">Cornish</ion-option>
+          <ion-option value="nb">Norwegian Bokmål</ion-option>
+          <ion-option value="nl">Dutch</ion-option>
+          <ion-option value="pl">Polish</ion-option>
+          <ion-option value="pt">Portuguese</ion-option>
+          <ion-option value="ru">Russian</ion-option>
+          <ion-option value="sk">Slovak</ion-option>
+          <ion-option value="sl">Slovenian</ion-option>
+          <ion-option value="sr">Serbian</ion-option>
+          <ion-option value="sv">Swedish</ion-option>
+          <ion-option value="tet">Tetum</ion-option>
+          <ion-option value="tr">Turkish</ion-option>
+          <ion-option value="uk">Ukrainian</ion-option>
+          <ion-option value="x-pig-latin">Igpay Atinlay</ion-option>
+          <ion-option value="zh">simplified Chinese</ion-option>
+          <ion-option value="zh-tw">traditional Chinese</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-item *ngIf="!metricUnits">
+      <ion-label>Metric units</ion-label>
+      <ion-toggle [(ngModel)]="metricUnits"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="metricUnits">
+      <ion-label>Imperial units</ion-label>
+      <ion-toggle [(ngModel)]="metricUnits"></ion-toggle>
+    </ion-item>
+    
+</ion-content>

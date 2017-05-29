@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-searchbar [(ngModel)]="autocomplete.query" (ionInput)="updateSearch()"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="search-autocomplete">
+  <ion-list>
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="chooseItem(item)">
+      <ion-icon name="pin"></ion-icon>
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+
+  <ion-icon name="search" class="background-icon"></ion-icon>
+</ion-content>
